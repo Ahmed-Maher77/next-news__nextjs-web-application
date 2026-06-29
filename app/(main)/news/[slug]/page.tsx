@@ -2,10 +2,12 @@ import { NewsDetailPageProps } from "@/app/types";
 import Image from "next/image";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 // Article detail page
 const NewsDetailPage = async ({ params }: NewsDetailPageProps) => {
     const { slug } = await params;
-    const res = await fetch(`http://localhost:3000/api/news/${slug}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news/${slug}`);
 
     const body = await res.json();
     if (!res.ok) {

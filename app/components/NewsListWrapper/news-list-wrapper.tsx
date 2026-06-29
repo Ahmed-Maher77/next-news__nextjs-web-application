@@ -2,7 +2,7 @@ import NewsList from "../news-list";
 
 // Fetch news from API
 const NewsListWrapper = async () => {
-    const response = await fetch("http://localhost:3000/api/news");
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news`);
     if (!response.ok) {
         throw new Error("Failed to fetch news");
     }
