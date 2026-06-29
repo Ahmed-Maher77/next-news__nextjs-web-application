@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Merriweather } from "next/font/google";
+import MainFooter from "./components/MainFooter/main-footer";
 import "./globals.css";
 
 // Headings and body fonts
@@ -91,6 +92,7 @@ export const metadata: Metadata = {
     icon: "/logo.jpg",
     apple: "/logo.jpg",
   },
+  manifest: "/manifest.webmanifest",
   category: "news",
 };
 
@@ -128,6 +130,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <MainFooter />
       </body>
     </html>
   );

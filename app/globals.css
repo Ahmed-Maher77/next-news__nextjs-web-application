@@ -202,6 +202,36 @@ ul {
     border-bottom: 2px solid #b0b0a6;
 }
 
+/* Footer */
+footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #2d2d2b;
+    text-align: center;
+    color: #bcbcb7;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0 0 0.25rem 0;
+}
+
+footer a {
+    color: #e5e5e1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+footer span {
+    font-size: 0.8rem;
+    color: #8a8a82;
+}
+
 /* Error */
 .error {
     text-align: center;

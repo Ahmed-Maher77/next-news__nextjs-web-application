@@ -1,174 +1,375 @@
-# Next News
+# NextNews — Modern News Aggregation Platform
 
-**Web App Name:** Next News
+NextNews is a production-grade, server-rendered news aggregation platform built with **Next.js 16** and **React 19**. It delivers the latest headlines through a clean, accessible dark-themed interface with article browsing, interactive image modals, and a date-filtered archive system — all powered by a built-in **SQLite** database and a RESTful API layer.
 
-**Description:** Next News is a modern, server-rendered news application built with Next.js 16. It delivers the latest news in a concise, unbiased manner through a clean, accessible interface. The app features article browsing, detailed views, image modals, and a date-filtered archive system.
+---
 
-## Key Features
+## 🌐 Live Preview
 
-- **News Listing** – Browse all news articles in a responsive grid layout with cover images and titles.
-- **Article Detail Pages** – View full article content, title, date, and a clickable image that opens in full-screen.
-- **Image Modal (Intercepting Routes)** – Click an article image to open it in a route-intercepted modal overlay without leaving the article page. Modal disables background scrolling and closes via backdrop click, close button, or browser back.
-- **Full-Screen Image Page (Parallel Route)** – Navigate directly to `/news/[slug]/image` for a dedicated full-screen image view, accessible without the modal context.
-- **Date-Filtered Archive** – Browse news by year and month using dynamic URL segments (`/archive/2024`, `/archive/2024/03`) with filter validation and fallback UI.
-- **Latest News Section** – The archive page displays the 3 most recent articles alongside the filterable archive.
-- **Navigation with Active Link Highlighting** – Persistent header nav with Home, News, and Archive links; active route is visually indicated.
-- **Responsive Mobile Navigation** – Hamburger menu with sliding panel and overlay backdrop for mobile screens.
-- **Error Boundaries** – Dedicated error UI with retry and navigation options at global (`app/error.tsx`), news (`app/(main)/news/error.tsx`), and archive filter levels.
-- **Custom 404 Pages** – User-friendly not-found pages for global, news detail, and archive routes with guidance and navigation links.
-- **Loading States** – Skeleton/spinner-like loading components with animated dots feedback for Suspense boundaries.
-- **RESTful API** – JSON API endpoints (`/api/news`, `/api/news/[slug]`) returning all news or a single article by slug.
-- **SQLite Database** – Auto-initialized local database with seeded dummy news data on first run.
-- **Middleware Proxy** – Request logging middleware targeting API routes (`/api/:path*`).
+> 👀 [Watch Live Demo](https://next-news-nextjs-web-app.vercel.app)
 
-## Operations the App Can Do
+---
 
-| Operation | Description |
-|-----------|-------------|
-| Browse News | View a grid of all news articles with images and titles |
-| Read Article | Click any article to see its full content and metadata |
-| View Image in Modal | Click article image to open an intercepting route modal |
-| View Full-Screen Image | Navigate to dedicated image-only page |
-| Filter Archive by Year | Select a year to see all articles from that year |
-| Filter Archive by Year+Month | Drill down to articles from a specific month |
-| Reset Archive Filters | Navigate back to the root archive to clear filters |
+## 🎥 Demo Video
 
-## Used Technologies
+> [Watch the Demo on LinkedIn](https://www.linkedin.com)
+
+---
+
+## 💻 Used Technologies
 
 | Technology | Purpose |
-|------------|---------|
-| **Next.js 16** (App Router) | Full-stack React framework providing file-based routing, server components, SSR, API routes, and intercepting/parallel route patterns (Figma: built on the same component-based, state-driven design model). |
-| **React 19** | UI component library for building interactive, reusable interface elements. |
-| **TypeScript** | Static type-checking for safer, more maintainable code. |
-| **Tailwind CSS v4** | Utility-first CSS framework for rapid, responsive styling with zero-runtime CSS-in-JS. |
-| **better-sqlite3** | Synchronous SQLite3 driver for fast, local-persistent data storage. |
-| **PostCSS** | CSS transformation tool used as the pipeline for Tailwind processing. |
-| **ESLint** (with `eslint-config-next`) | Linting configured with Next.js core-web-vitals and TypeScript rules for code quality. |
-| **next/font** | Automatic font optimization for Inter (sans-serif headings) and Merriweather (serif body). |
+|---|---|
+| **Next.js 16 (App Router)** | Full-stack React framework providing server-side rendering, file-based routing, parallel routes, intercepting routes, and API route handlers for a performant SEO-friendly SPA. |
+| **React 19** | Component-based UI library for building interactive, reactive user interfaces with server components and client components. |
+| **TypeScript** | Strongly-typed superset of JavaScript that improves code quality, maintainability, and developer experience through static type checking. |
+| **Tailwind CSS v4** | Utility-first CSS framework used for rapid, consistent styling directly in markup with a custom dark theme and responsive design. |
+| **better-sqlite3** | Synchronous SQLite3 driver for Node.js used as the embedded database engine for storing and querying news articles without external dependencies. |
+| **ESLint** | Static code analysis tool enforcing consistent code style and catching potential bugs early in development. |
 
-## Installation Instructions for Local Setup
+### Hosting
+
+| Layer | Provider |
+|---|---|
+| **Frontend** | Vercel (Next.js-native deployment) |
+| **Backend (API)** | Vercel (serverless functions via Next.js API routes) |
+| **Database** | Embedded SQLite (local `news.db` file, bundled with the app) |
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| **Server-Rendered News Feed** | All pages are server-rendered using Next.js App Router, ensuring fast initial load times and excellent SEO. |
+| **Article Detail Pages** | Dedicated dynamic routes for each news article with full content, metadata, and Open Graph tags for social sharing. |
+| **Image Modal (Parallel Route)** | Click any article image to open it in an interactive modal overlay using Next.js intercepting routes — preserves the article context beneath. |
+| **Date-Filtered Archive** | Browse news by year and month through a dynamic archive system with parallel route slots showing the latest articles alongside. |
+| **Responsive Mobile Navigation** | Collapsible hamburger menu with smooth slide-in animation and overlay backdrop for mobile devices. |
+| **Embedded SQLite Database** | Zero-configuration database that auto-seeds with sample data on first run — no external database setup required. |
+| **RESTful API Layer** | Built-in `/api/news` endpoints returning JSON for programmatic access to articles. |
+| **Comprehensive SEO** | Full metadata strategy including Open Graph, Twitter Cards, JSON-LD structured data (WebSite + NewsArticle schemas), auto-generated sitemap, and robots.txt. |
+| **Dark Theme UI** | Cohesive dark color scheme (`#181817` background) with serif/ sans-serif typography using Inter and Merriweather fonts. |
+| **Loading & Error Boundaries** | Suspense-powered loading states, custom error pages, and not-found handling for every route segment. |
+| **Health-Check Endpoint** | Root API route (`/api`) for monitoring and health verification. |
+
+---
+
+## 📸 Website Preview (UI Mockup)
+
+```
+┌─────────────────────────────────────────────────────┐
+│  NextNews                    [Home] [News] [Archive] │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│            ┌─────────────────────────────┐           │
+│            │        (Logo Circle)        │           │
+│            └─────────────────────────────┘           │
+│                                                     │
+│          A News Site For The Next Generation         │
+│                                                     │
+│   Next News is here to deliver you all the latest   │
+│   news — concise & unbiased!                        │
+│                                                     │
+│            [Read the latest news]                    │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────┐
+│  NextNews                    [Home] [News] [Archive] │
+├─────────────────────────────────────────────────────┤
+│  News Page                                          │
+│                                                     │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
+│  │  Image   │  │  Image   │  │  Image   │          │
+│  │  Title   │  │  Title   │  │  Title   │          │
+│  └──────────┘  └──────────┘  └──────────┘          │
+│  ┌──────────┐  ┌──────────┐                         │
+│  │  Image   │  │  Image   │                         │
+│  │  Title   │  │  Title   │                         │
+│  └──────────┘  └──────────┘                         │
+└─────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────┐
+│  NextNews                    [Home] [News] [Archive] │
+├─────────────────────────────────────────────────────┤
+│  Article Title                          [2021-07-01] │
+│                                                     │
+│  ┌─────────────────────────────────────┐            │
+│  │          Article Image              │            │
+│  │         (Click to expand)           │            │
+│  └─────────────────────────────────────┘            │
+│                                                     │
+│  Full article content displayed here...              │
+└─────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────┐
+│  NextNews                    [Home] [News] [Archive] │
+├─────────────────────────────────────────────────────┤
+│  News Archive                                       │
+│                                                     │
+│  [2021] [2022] [2024]                               │
+│                                                     │
+│  ┌──────────┐  ┌──────────┐                         │
+│  │  Image   │  │  Image   │                         │
+│  │  Title   │  │  Title   │                         │
+│  └──────────┘  └──────────┘                         │
+│                                                     │
+│  ────────────────────────────────────────────────  │
+│  Latest News                                        │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
+│  │  Image   │  │  Image   │  │  Image   │          │
+│  │  Title   │  │  Title   │  │  Title   │          │
+│  └──────────┘  └──────────┘  └──────────┘          │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## Best Practices and Standards
+
+### Performance Optimization
+- **Server-Side Rendering (SSR)** — Pages are rendered on the server, reducing client-side JavaScript and improving Time to First Paint (TTFP).
+- **Next.js Image Optimization** — Native `next/image` component with automatic lazy loading, responsive srcset, and WebP format negotiation.
+- **Turbopack** — Lightning-fast development builds and optimized production bundles using Rust-based bundler.
+- **Font Optimization** — Google Fonts (Inter + Merriweather) loaded via `next/font` with automatic `font-display: swap` and subsetting.
+
+### Security
+- **Automatic CSRF Protection** — Next.js server actions and API routes are protected against cross-site request forgery.
+- **No Secret Exposure** — No API keys or secrets committed to the repository.
+- **Read-Only Database in Production** — SQLite database opened in read-only mode when `NODE_ENV=production`.
+- **XSS Prevention** — React's built-in JSX escaping prevents cross-site scripting attacks.
+
+### Accessibility
+- **Semantic HTML** — Proper use of `<article>`, `<header>`, `<nav>`, `<main>`, `<time>`, `<dialog>` elements.
+- **Keyboard Navigation** — Modal dialogs and navigation menus support keyboard interaction.
+- **Focus Management** — Modal open/close manages focus correctly to prevent trapping.
+- **Screen Reader Support** — Meaningful `alt` text on all images and `aria-label` attributes where needed.
+- **Responsive Design** — Fully responsive layout with mobile-first breakpoints, collapsible navigation, and touch-friendly targets.
+
+### User Experience
+- **Suspense Loading States** — Granular loading spinners for data-fetching segments prevent layout shift.
+- **Error Boundaries** — Custom error pages at route-group level provide graceful failure recovery.
+- **Not-Found Pages** — Dedicated 404 pages for missing articles and invalid archive filters.
+- **Optimistic UI Patterns** — Intercepting routes allow image modals without losing scroll position or article context.
+
+### SEO
+- **Structured Data (JSON-LD)** — `WebSite` schema with `SearchAction` on the root layout, `NewsArticle` schema per article with full metadata (headline, image, datePublished, author, publisher).
+- **Open Graph & Twitter Cards** — Comprehensive OG tags (`og:title`, `og:description`, `og:image`, `og:type`, `og:locale`) and Twitter `summary_large_image` cards.
+- **Semantic URL Structure** — Clean, human-readable URLs (`/news/will-ai-replace-humans`) with canonical tags.
+- **Auto-Generated Sitemap** — Dynamic `sitemap.xml` with all static and dynamic routes, proper priorities, and change frequencies.
+- **Robots Configuration** — `robots.txt` allows all crawlers except `/api/`, with sitemap reference.
+- **Metadata Composition** — Template-based title composition (`%s | Next News`) ensures consistent branding across all pages.
+
+### OOP & SOLID Principles
+- **Single Responsibility** — Each component and module has one clearly defined purpose (e.g., `NewsList` only renders the grid, `ImageDialog` only manages the modal).
+- **Separation of Concerns** — Data access (`lib/news.js`), UI components (`components/`), API routes (`api/`), and page layouts (`app/`) are cleanly separated.
+- **Dependency Inversion** — High-level page components depend on abstractions (API endpoints) rather than concrete data sources.
+- **Interface Segregation** — TypeScript interfaces (`LayoutProps`, `NewsDetailPageProps`, `ArchiveFilterPageProps`) define precisely the props each component needs.
+
+### Design Patterns
+- **Route Group Pattern** — `(main)` group encapsulates shared layout logic (header) without affecting URL structure.
+- **Parallel Routes** — `@modal`, `@archive`, `@latest` slots render independent UI sections that can error or load separately.
+- **Intercepting Routes** — `(.)image` pattern intercepts navigation to `/news/[slug]/image` to render an inline modal instead of navigating away.
+- **Repository Pattern** — `lib/news.js` acts as a data repository abstracting SQLite queries behind clean function names.
+- **Factory Function** — `initDB()` factory handles conditional database initialization and seeding.
+- **Wrapper Component** — `NewsListWrapper` abstracts data fetching from presentation, enabling Suspense integration.
+
+---
+
+## 📥 Installation Instructions for Local Setup
 
 ### Prerequisites
-- Node.js (v20 or later recommended)
-- npm (v10+) or yarn/pnpm
 
-### Steps
+- **Node.js** v18+ (recommended: v20 LTS)
+- **npm** v9+ (ships with Node.js)
+- **Git** (for cloning the repository)
+
+### Step 1: Clone the Repository
 
 ```bash
-# 1. Navigate to the project root
+git clone <repository-url>
 cd next-news
+```
 
-# 2. Install dependencies
+### Step 2: Install Dependencies
+
+```bash
 npm install
+```
 
-# 3. Run the development server
+### Step 3: Configure Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+### Step 4: Run the Development Server
+
+```bash
 npm run dev
 ```
 
-### Build for Production
+The app will be available at **http://localhost:3000**.
+
+On first run, the SQLite database (`news.db`) is automatically created and seeded with sample articles.
+
+### Step 5: Build for Production
 
 ```bash
 npm run build
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+---
 
 ## Project Structure
 
 ```
 next-news/
-├── app/                          # Next.js App Router (pages, layouts, API)
-│   ├── (main)/                   # Route group (shared layout with header)
-│   │   ├── archive/              # Archive feature
-│   │   │   ├── @archive/         # Parallel route: filterable archive content
-│   │   │   │   └── [[...filter]]/ # Catch-all segment for year/month
-│   │   │   ├── @latest/          # Parallel route: latest news section
-│   │   │   ├── default.tsx       # Fallback when parallel route not matched
-│   │   │   └── layout.tsx        # Archive page layout with named slots
-│   │   ├── news/                 # News feature
-│   │   │   ├── [slug]/           # Dynamic route for a single article
-│   │   │   │   ├── @modal/       # Parallel route: image modal
-│   │   │   │   │   └── (.)image/ # Intercepting route: modal image view
-│   │   │   │   ├── image/        # Direct full-screen image page
-│   │   │   │   ├── default.tsx   # Fallback for modal slot
-│   │   │   │   ├── layout.tsx    # News detail layout (renders children + modal)
-│   │   │   │   ├── not-found.tsx # Custom 404 for missing articles
-│   │   │   │   └── page.tsx      # Article detail page (fetches from API)
-│   │   │   ├── error.tsx         # Error boundary for news pages
-│   │   │   ├── layout.tsx        # News section layout with metadata
-│   │   │   └── page.tsx          # News listing page (Suspense + wrapper)
-│   │   └── layout.tsx            # Main layout with header
-│   ├── api/                      # API routes
+├── app/                              # Next.js App Router pages & layouts
+│   ├── (main)/                       # Route group — shared header layout
+│   │   ├── archive/
+│   │   │   ├── @archive/             # Parallel route: filterable archive content
+│   │   │   │   └── [[...filter]]/    # Catch-all optional year/month filter
+│   │   │   │       ├── page.tsx      # Archive filter logic & rendering
+│   │   │   │       └── error.tsx     # Archive-specific error boundary
+│   │   │   ├── @latest/              # Parallel route: latest 3 articles
+│   │   │   │   └── default.tsx       # Latest news fallback
+│   │   │   ├── default.tsx           # Archive default when no filter selected
+│   │   │   └── layout.tsx            # Archive page layout + metadata
 │   │   ├── news/
-│   │   │   ├── [slug]/route.tsx  # GET /api/news/[slug] – single article
-│   │   │   └── route.tsx         # GET /api/news – all articles
-│   │   └── route.tsx             # GET /api – placeholder hello route
-│   ├── assets/                   # Static assets
-│   │   ├── dummy-news.ts         # Seed data for SQLite
-│   │   └── logo.jpg              # App logo
-│   ├── components/               # Reusable UI components
-│   │   ├── Buttons/main-link.tsx  # Styled navigation link
-│   │   ├── Icons/                # SVG icons (left-arrow, reload)
-│   │   ├── ImageDialog.tsx       # Modal dialog for article image
-│   │   ├── Loading/Loading.tsx   # Animated dots loading indicator
-│   │   ├── MainHeader/           # Header with logo, nav links, mobile menu
-│   │   ├── NewsListWrapper/      # Async wrapper fetching news from API
-│   │   ├── news-list.tsx         # News grid list component
-│   │   └── overlay.tsx           # Mobile menu backdrop overlay
-│   ├── error.tsx                 # Global error boundary
-│   ├── globals.css               # Tailwind imports + custom global styles
-│   ├── layout.tsx                # Root layout (fonts, metadata)
-│   ├── not-found.tsx             # Global 404 page
-│   ├── page.tsx                  # Home/landing page
-│   └── types.ts                  # Shared TypeScript interfaces
+│   │   │   ├── [slug]/               # Dynamic article detail route
+│   │   │   │   ├── (.)image/         # Intercepting route — inline image modal
+│   │   │   │   │   └── page.tsx      # Modal dialog component
+│   │   │   │   ├── image/
+│   │   │   │   │   └── page.tsx      # Full-page image (fallback when accessed directly)
+│   │   │   │   ├── default.tsx       # Modal slot default when not active
+│   │   │   │   ├── layout.tsx        # Dynamic metadata + JSON-LD + modal slot
+│   │   │   │   ├── not-found.tsx     # 404 for missing articles
+│   │   │   │   └── page.tsx          # Article detail page
+│   │   │   ├── layout.tsx            # News listing page metadata
+│   │   │   ├── page.tsx              # News listing page
+│   │   │   └── error.tsx             # News-specific error boundary
+│   │   └── layout.tsx                # Shared content layout with MainHeader
+│   ├── api/
+│   │   ├── news/
+│   │   │   ├── [slug]/route.tsx      # GET /api/news/:slug — single article
+│   │   │   └── route.tsx             # GET /api/news — all articles
+│   │   └── route.tsx                 # GET /api — health check
+│   ├── assets/
+│   │   ├── dummy-news.ts             # Sample news data for database seeding
+│   │   └── logo.jpg                  # Application logo
+│   ├── components/
+│   │   ├── Buttons/
+│   │   │   └── main-link.tsx         # Reusable styled link button
+│   │   ├── Icons/
+│   │   │   ├── left-arrow-icon.tsx   # Left arrow SVG icon
+│   │   │   └── reload-icon.tsx       # Reload SVG icon
+│   │   ├── Loading/
+│   │   │   └── Loading.tsx           # Generic loading spinner component
+│   │   ├── Loader/
+│   │   │   ├── main-loader.tsx       # Main page loader component
+│   │   │   └── main-loader.module.css
+│   │   ├── MainHeader/
+│   │   │   ├── main-header.tsx       # Site header with logo & navigation
+│   │   │   ├── nav-link.tsx          # Active-aware navigation link
+│   │   │   └── navLinks.tsx          # Responsive nav with hamburger menu
+│   │   ├── NewsListWrapper/
+│   │   │   └── news-list-wrapper.tsx # Data-fetching wrapper for news list
+│   │   ├── ImageDialog.tsx           # Modal image dialog overlay
+│   │   ├── news-list.tsx             # News article grid component
+│   │   └── overlay.tsx               # Backdrop overlay for mobile menu
+│   ├── error.tsx                     # Root error boundary
+│   ├── globals.css                   # Global styles + Tailwind directives
+│   ├── layout.tsx                    # Root layout — fonts, metadata, JSON-LD
+│   ├── loading.tsx                   # Root loading state
+│   ├── not-found.tsx                 # Root 404 page
+│   ├── page.tsx                      # Homepage
+│   ├── manifest.ts                   # PWA manifest generator
+│   ├── robots.ts                     # robots.txt generator
+│   ├── sitemap.ts                    # Dynamic sitemap.xml generator
+│   └── types.ts                      # Shared TypeScript interfaces
 ├── lib/
-│   └── news.js                   # SQLite database helpers (CRUD operations)
+│   └── news.js                       # SQLite database layer (CRUD operations)
 ├── public/
-│   ├── images/news/              # News article images (5 dummy images)
-│   └── ...                       # Default Next.js static assets
-├── proxy.tsx                     # Middleware: logs incoming API requests
-├── next.config.ts                # Next.js configuration
-├── tsconfig.json                 # TypeScript configuration
-├── postcss.config.mjs            # PostCSS configuration (Tailwind plugin)
-├── eslint.config.mjs             # ESLint configuration
-└── package.json                  # Dependencies and scripts
+│   ├── images/
+│   │   └── news/                     # Article images (ai-robot.jpg, beaver.jpg, etc.)
+│   ├── file.svg                      # Default file icon
+│   ├── globe.svg                     # Default globe icon
+│   ├── logo.jpg                      # Site favicon / OG image
+│   ├── next.svg                      # Next.js logo
+│   ├── vercel.svg                    # Vercel logo
+│   └── window.svg                    # Default window icon
+├── next.config.ts                    # Next.js configuration
+├── tsconfig.json                     # TypeScript configuration
+├── postcss.config.mjs                # PostCSS + Tailwind configuration
+├── eslint.config.mjs                 # ESLint flat config
+├── package.json                      # Project metadata & dependencies
+└── README.md                         # Project documentation
 ```
+
+---
 
 ## Database Structure
 
-**Engine:** SQLite (via `better-sqlite3`)  
-**File:** `news.db` (auto-created on first run)
+The application uses an embedded **SQLite** database stored locally as `news.db`.
 
 ### Table: `news`
 
-| Column    | Type         | Constraints              | Description                    |
-|-----------|--------------|--------------------------|--------------------------------|
-| `id`      | VARCHAR(255) | PRIMARY KEY              | Unique article identifier      |
-| `slug`    | TEXT         | UNIQUE, NOT NULL         | URL-friendly identifier        |
-| `title`   | TEXT         | NOT NULL                 | Article headline               |
-| `image`   | TEXT         | NOT NULL                 | Image filename                 |
-| `date`    | TEXT         | DEFAULT CURRENT_DATE     | Publication date (ISO format)  |
-| `content` | TEXT         | NOT NULL                 | Full article body              |
+| Column    | Type         | Constraints              | Description                     |
+|-----------|--------------|--------------------------|---------------------------------|
+| `id`      | VARCHAR(255) | PRIMARY KEY              | Unique article identifier       |
+| `slug`    | TEXT         | UNIQUE, NOT NULL         | URL-friendly unique slug        |
+| `title`   | TEXT         | NOT NULL                 | Article headline                |
+| `image`   | TEXT         | NOT NULL                 | Filename of the article image   |
+| `date`    | TEXT         | DEFAULT CURRENT_DATE     | Publication date (ISO format)   |
+| `content` | TEXT         | NOT NULL                 | Full article body               |
 
-**Seeding:** On initial load, 5 dummy articles are inserted from `app/assets/dummy-news.ts`.
+### Auto-Seeding
+
+On first run in non-production environments, the database is automatically created and populated with sample articles from `app/assets/dummy-news.ts`.
+
+### Key Queries (via `lib/news.js`)
+
+| Function                          | SQL Query                                              | Returns               |
+|-----------------------------------|--------------------------------------------------------|-----------------------|
+| `getAllNews()`                    | `SELECT * FROM news`                                   | All articles          |
+| `getLatestNews()`                 | `SELECT * FROM news ORDER BY date DESC LIMIT 3`        | 3 most recent         |
+| `getNewsBySlug(slug)`             | `SELECT * FROM news WHERE slug = ?`                    | Single article        |
+| `getNewsForYear(year)`            | `SELECT * FROM news WHERE strftime('%Y', date) = ?`    | Articles by year      |
+| `getNewsForYearAndMonth(y, m)`    | `SELECT * FROM news WHERE strftime('%Y', date) = ? AND strftime('%m', date) = ?` | Articles by year+month |
+| `getAvailableNewsYears()`         | `SELECT DISTINCT strftime('%Y', date) FROM news`       | Available years       |
+| `getAvailableNewsMonths(year)`    | `SELECT DISTINCT strftime('%m', date) FROM news WHERE strftime('%Y', date) = ?` | Months in a year      |
+| `getNewsImageBySlug(slug)`        | `SELECT image FROM news WHERE slug = ?`                | Image filename        |
+
+---
 
 ## API Docs
 
-### Base URL
+Base URL: `http://localhost:3000/api` (development) or `https://next-news-nextjs-web-app.vercel.app/api` (production)
 
+### `GET /api`
+
+Health check endpoint.
+
+**Response:**
 ```
-http://localhost:3000/api
+Hello from the API route!
 ```
 
-### Endpoints
+---
 
-#### `GET /api/news`
+### `GET /api/news`
 
 Returns all news articles.
 
-**Response `200`:**
-
+**Response:**
 ```json
 {
   "data": [
@@ -178,20 +379,19 @@ Returns all news articles.
       "title": "Will AI Replace Humans?",
       "image": "ai-robot.jpg",
       "date": "2021-07-01",
-      "content": "Since late 2022..."
+      "content": "Since late 2022 AI is on the rise..."
     }
   ]
 }
 ```
 
-#### `GET /api/news/:slug`
+---
 
-Returns a single news article by slug.
+### `GET /api/news/:slug`
 
-**Path Parameters:** `slug` (string) – The URL slug of the article.
+Returns a single news article by its slug.
 
-**Response `200`:**
-
+**Success Response (200):**
 ```json
 {
   "data": {
@@ -200,77 +400,53 @@ Returns a single news article by slug.
     "title": "Will AI Replace Humans?",
     "image": "ai-robot.jpg",
     "date": "2021-07-01",
-    "content": "Since late 2022..."
+    "content": "Since late 2022 AI is on the rise..."
   }
 }
 ```
 
-**Response `404`:**
-
+**Not Found Response (404):**
 ```json
 {
-  "message": "News with slug \"invalid-slug\" not found"
+  "message": "News with slug \"non-existent-slug\" not found"
 }
 ```
 
-## Best Practices and Standards Followed
+---
 
-### Performance Optimization
-- **Server Components** – All data fetching and rendering happens server-side, reducing client JS bundle size.
-- **React Suspense** – Wrapped news list in Suspense boundary with a loading fallback for streaming SSR.
-- **CSS Grid** – Used `grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr))` for responsive layouts without JS.
-- **next/image** – Automatic image optimization, lazy loading, and responsive sizing via the built-in Image component.
-- **next/font** – Automatic font subsetting and layout shift prevention for Google Fonts.
-- **Efficient CSS** – Single `globals.css` with Tailwind utility classes, no runtime CSS-in-JS overhead.
-- **Minimal Dependencies** – Only 4 runtime dependencies (next, react, react-dom, better-sqlite3).
+## 📬 Contact & Contribution
 
-### SEO
-- **Semantic HTML** – Uses `<article>`, `<header>`, `<nav>`, `<time>`, `<h1>` elements.
-- **Dynamic Metadata** – `generateMetadata` on news detail page creates unique titles/descriptions per article.
-- **Metadata Template** – Root layout uses `title.template: "%s | Next News"` for consistent page titles.
-- **Descriptive Meta** – Title and description metadata on every layout.
-- **Semantic Image Alt Text** – All `<Image>` components include descriptive `alt` attributes.
-- **Proper Link Elements** – Semantic `<Link>` components for navigation with meaningful text.
+### Author
 
-### Accessibility
-- **Semantic Landmarks** – Navigation (`<nav>`), main content (`<main>` via layout), articles (`<article>`).
-- **Focus Management** – Modal disables background scroll to prevent focus trap issues.
-- **Responsive Text** – Uses `text-sm sm:text-base` patterns for mobile-first typography.
-- **Color Contrast** – Light-on-dark theme (`#e5e5e1` on `#181817`) with high contrast.
-- **Interactive States** – Hover and focus styles on all interactive elements with `transition` animations.
-- **Suppress Hydration Warning** – `suppressHydrationWarning` on `<body>` to avoid console noise.
-- **Meaningful Loading Text** – `"Loading News"` with animated dots for screen reader context.
+**Ahmed Maher**
 
-### UX (Usability Heuristics)
+[![Portfolio](https://img.shields.io/badge/Portfolio-%23000000.svg?style=for-the-badge&logo=firefox&logoColor=white)](https://your-portfolio-link.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-linkedin)
+[![Email](https://img.shields.io/badge/Email-%23D14836.svg?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ahmedmaheraljwhry057@gmail.com)
 
-- **Error Recovery (Visibility of System Status)** – Global error boundary with retry button and navigation home. News-specific error with retry. Archive filter error with guidance.
-- **Help Users Recognize, Diagnose, and Recover from Errors** – Custom 404 pages with clear messages:
-  - Global: *"Please check the URL or go back to Home Page"*
-  - News detail: *"The News you are searching for doesn't exist..."*
-  - Archive: *"There are no News available for the selected year..."* with suggestion: *"Please select a different year."*
-- **User Control and Freedom** – Modal closes via close button, backdrop click, or browser back button.
-- **Consistency and Standards** – Consistent link styling, button patterns, and layout structure across pages.
-- **Validation and Guidance** – Archive filter validates year/month existence and shows fallback messages like *"Invalid month selected, please try again."*, *"No news found for the specified year."*
-- **Clear Navigation** – Persistent header with active link highlighting; mobile hamburger menu with overlay.
-- **Fallback Messages** – `notFound()` redirects to custom 404s; archive filter shows fallback text when no year/month selected.
-- **Shareable URLs** – Archive uses URL-based filter state (`/archive/2024/03`) enabling bookmarking and sharing.
+### Contribution
 
-### Code Quality & Architecture (OOP / SOLID)
+Contributions are welcome! To contribute:
 
-- **Single Responsibility** – Each component/file has one clear purpose (e.g., `news-list.tsx` only renders the list, `Loading.tsx` only displays loading state, `ImageDialog.tsx` only handles the image modal).
-- **Separation of Concerns** – Database logic in `lib/news.js`, API routes in `app/api/`, UI components in `app/components/`, page layouts in route files.
-- **Reusability** – Shared components: `MainLink`, `NewsList`, `Loading`, `LeftArrowIcon`, `ReloadIcon`, `Overlay`, `NavLink`.
-- **TypeScript Interfaces** – All props typed via `app/types.ts` for compile-time safety.
-- **Clean Data Flow** – Server components fetch data via API internally; intercepting routes use parallel route slots for clean separation of modal vs. page content.
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/amazing-feature`).
+3. Commit your changes (`git commit -m 'Add amazing feature'`).
+4. Push to the branch (`git push origin feature/amazing-feature`).
+5. Open a Pull Request.
 
-### Additional Standards
+Please ensure your code follows the existing style conventions and passes `npm run lint` before submitting.
 
-| Area | Practice |
-|------|----------|
-| **Routing** | File-based App Router with route groups `(main)`, parallel routes `@modal`/`@archive`/`@latest`, intercepting routes `(.)image`, catch-all segments `[[...filter]]` |
-| **CSS** | Tailwind v4 utility classes + PostCSS; mobile-first responsive design with `md:` breakpoints; CSS transitions for interactions; CSS Grid for layout |
-| **State Management** | URL-driven state via search params and dynamic routes; local React state for mobile menu and loading dots |
-| **Error Handling** | Nested error boundaries at global, page, and section levels with `error.tsx` files |
-| **Data Persistence** | SQLite with `better-sqlite3` for zero-config local storage; auto-seeded on first run |
-| **API Design** | RESTful JSON endpoints with consistent response structure `{ data, message }` and proper HTTP status codes |
-| **Middleware** | Request logging middleware targeting API routes via `proxy.tsx` with `matcher` config |
+---
+
+## 📊 Additional Documentation
+
+- **[UML Diagrams](UML_DIAGRAMS.md)** — Class diagrams, component diagrams, and sequence diagrams illustrating the system architecture.
+- **[Program Flow](PROGRAM_FLOW.md)** — Detailed walkthrough of request lifecycle, navigation flows, and data flow from database to UI.
+
+---
+
+## ⭐ Support
+
+If you find this project useful or inspiring, please consider giving it a ⭐ on GitHub. Your support is greatly appreciated and helps the project grow!
+
+[![GitHub stars](https://img.shields.io/github/stars/your-username/next-news?style=social)](https://github.com/your-username/next-news)

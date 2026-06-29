@@ -2,7 +2,7 @@ import logo from '@/app/assets/logo.jpg'
 import Link from 'next/link';
 
 export default async function HomePage() {
-  await new Promise(resolve => setTimeout(resolve, 20000)); // Simulate network delay
+  await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
 
   return (
     <div id="home">

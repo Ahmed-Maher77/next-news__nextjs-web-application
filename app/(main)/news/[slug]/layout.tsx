@@ -60,9 +60,59 @@ export const generateMetadata = async ({
 };
 
 // Children + modal slot
-export default function NewsDetailLayout({ children, modal }: LayoutProps) {
+export default async function NewsDetailLayout({
+    children,
+    modal,
+    params,
+}: LayoutProps & { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const newsItem = DUMMY_NEWS.find((news) => news.slug === slug);
+
+    if (!newsItem) {
+        return (
+            <>
+                {children}
+                {modal}
+            </>
+        );
+    }
+
+    const imageUrl = `${SITE_URL}/images/news/${newsItem.image}`;
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        headline: newsItem.title,
+        image: [imageUrl],
+        datePublished: newsItem.date,
+        dateModified: newsItem.date,
+        author: {
+            "@type": "Person",
+            name: "Ahmed",
+        },
+        publisher: {
+            "@type": "Organization",
+            name: "Next News",
+            logo: {
+                "@type": "ImageObject",
+                url: `${SITE_URL}/logo.jpg`,
+            },
+        },
+        description: newsItem.content.slice(0, 200),
+        articleBody: newsItem.content,
+        url: `${SITE_URL}/news/${slug}`,
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${SITE_URL}/news/${slug}`,
+        },
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             {children}
             {modal}
         </>
