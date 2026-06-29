@@ -6,13 +6,15 @@ NextNews is a production-grade, server-rendered news aggregation platform built 
 
 ## 🌐 Live Preview
 
-> 👀 [Watch Live Demo](https://next-news-nextjs-web-app.vercel.app)
+> **👀 Watch Live Demo:** [https://next-news-nextjs-web-app.vercel.app](https://next-news-nextjs-web-app.vercel.app)
 
 ---
 
-## 🎥 Demo Video
 
-> [Watch the Demo on LinkedIn](https://www.linkedin.com)
+## 👀 Website Preview:
+<a href="https://next-news-nextjs-web-app.vercel.app" title="demo">
+  <img src="https://github.com/user-attachments/assets/e57a4fd2-31db-496e-a2dc-ebda6268581d" alt="website preview - Demo - UI Mockup" width="400">
+</a>
 
 ---
 
@@ -52,80 +54,6 @@ NextNews is a production-grade, server-rendered news aggregation platform built 
 | **Dark Theme UI** | Cohesive dark color scheme (`#181817` background) with serif/ sans-serif typography using Inter and Merriweather fonts. |
 | **Loading & Error Boundaries** | Suspense-powered loading states, custom error pages, and not-found handling for every route segment. |
 | **Health-Check Endpoint** | Root API route (`/api`) for monitoring and health verification. |
-
----
-
-## 📸 Website Preview (UI Mockup)
-
-```
-┌─────────────────────────────────────────────────────┐
-│  NextNews                    [Home] [News] [Archive] │
-├─────────────────────────────────────────────────────┤
-│                                                     │
-│            ┌─────────────────────────────┐           │
-│            │        (Logo Circle)        │           │
-│            └─────────────────────────────┘           │
-│                                                     │
-│          A News Site For The Next Generation         │
-│                                                     │
-│   Next News is here to deliver you all the latest   │
-│   news — concise & unbiased!                        │
-│                                                     │
-│            [Read the latest news]                    │
-│                                                     │
-└─────────────────────────────────────────────────────┘
-
-
-┌─────────────────────────────────────────────────────┐
-│  NextNews                    [Home] [News] [Archive] │
-├─────────────────────────────────────────────────────┤
-│  News Page                                          │
-│                                                     │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
-│  │  Image   │  │  Image   │  │  Image   │          │
-│  │  Title   │  │  Title   │  │  Title   │          │
-│  └──────────┘  └──────────┘  └──────────┘          │
-│  ┌──────────┐  ┌──────────┐                         │
-│  │  Image   │  │  Image   │                         │
-│  │  Title   │  │  Title   │                         │
-│  └──────────┘  └──────────┘                         │
-└─────────────────────────────────────────────────────┘
-
-
-┌─────────────────────────────────────────────────────┐
-│  NextNews                    [Home] [News] [Archive] │
-├─────────────────────────────────────────────────────┤
-│  Article Title                          [2021-07-01] │
-│                                                     │
-│  ┌─────────────────────────────────────┐            │
-│  │          Article Image              │            │
-│  │         (Click to expand)           │            │
-│  └─────────────────────────────────────┘            │
-│                                                     │
-│  Full article content displayed here...              │
-└─────────────────────────────────────────────────────┘
-
-
-┌─────────────────────────────────────────────────────┐
-│  NextNews                    [Home] [News] [Archive] │
-├─────────────────────────────────────────────────────┤
-│  News Archive                                       │
-│                                                     │
-│  [2021] [2022] [2024]                               │
-│                                                     │
-│  ┌──────────┐  ┌──────────┐                         │
-│  │  Image   │  │  Image   │                         │
-│  │  Title   │  │  Title   │                         │
-│  └──────────┘  └──────────┘                         │
-│                                                     │
-│  ────────────────────────────────────────────────  │
-│  Latest News                                        │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
-│  │  Image   │  │  Image   │  │  Image   │          │
-│  │  Title   │  │  Title   │  │  Title   │          │
-│  └──────────┘  └──────────┘  └──────────┘          │
-└─────────────────────────────────────────────────────┘
-```
 
 ---
 
@@ -414,27 +342,10 @@ Returns a single news article by its slug.
 
 ---
 
-## 📬 Contact & Contribution
-
-### Author
-
-**Ahmed Maher**
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-%23000000.svg?style=for-the-badge&logo=firefox&logoColor=white)](https://your-portfolio-link.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-linkedin)
-[![Email](https://img.shields.io/badge/Email-%23D14836.svg?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ahmedmaheraljwhry057@gmail.com)
-
-### Contribution
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature/amazing-feature`).
-3. Commit your changes (`git commit -m 'Add amazing feature'`).
-4. Push to the branch (`git push origin feature/amazing-feature`).
-5. Open a Pull Request.
-
-Please ensure your code follows the existing style conventions and passes `npm run lint` before submitting.
+## 📬 Contact
+- 🧑‍💻 **Portfolio:** <a href="https://ahmedmaher-portfolio.vercel.app/" title="See My Portfolio">https://ahmedmaher-portfolio.vercel.app/</a>
+- 🔗 **LinkedIn:** <a href="https://www.linkedin.com/in/ahmed-maher-algohary" title="Contact via LinkedIn">https://www.linkedin.com/in/ahmed-maher-algohary</a>
+- 📧 **Email:** <a href="mailto:ahmedmaher.dev1@gmail.com" title="Contact via Email">ahmedmaher.dev1@gmail.com</a>
 
 ---
 
@@ -449,4 +360,4 @@ Please ensure your code follows the existing style conventions and passes `npm r
 
 If you find this project useful or inspiring, please consider giving it a ⭐ on GitHub. Your support is greatly appreciated and helps the project grow!
 
-[![GitHub stars](https://img.shields.io/github/stars/your-username/next-news?style=social)](https://github.com/your-username/next-news)
+[![GitHub stars](https://img.shields.io/github/stars/Ahmed-Maher77/next-news__nextjs-web-application?style=social)](https://github.com/your-username/next-news)
