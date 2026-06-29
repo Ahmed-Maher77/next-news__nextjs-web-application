@@ -1,9 +1,10 @@
 import { getNewsBySlug } from "@/lib/news";
+import { NextRequest } from "next/server";
 
 // GET /api/news/:slug
 export async function GET(
-    req: Request,
-    { params }: { params: { slug: string } },
+    req: NextRequest,
+    { params }: { params: Promise<{ slug: string }> },
 ) {
     const { slug } = await params;
     const news = getNewsBySlug(slug);    
