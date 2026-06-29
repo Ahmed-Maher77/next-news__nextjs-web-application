@@ -2,7 +2,7 @@
 import { LoadingProps } from '@/app/types'
 import { useEffect, useState } from 'react'
 
-// Animated dots for loading feedback
+// Full-screen loading overlay
 const Loading = ({ text }: LoadingProps) => {
     const [dots, setDots] = useState('');
 
@@ -13,11 +13,13 @@ const Loading = ({ text }: LoadingProps) => {
         return () => clearInterval(timerId);
     }, [])
 
-  return (
-    <p>
-      {text} {dots}
-    </p>
-  )
+    return (
+        <div className="fixed inset-0 bg-[#181817] flex items-center justify-center z-50">
+            <p className="text-xl text-[#e5e5e1]">
+                {text}{dots}
+            </p>
+        </div>
+    )
 }
 
 export default Loading
