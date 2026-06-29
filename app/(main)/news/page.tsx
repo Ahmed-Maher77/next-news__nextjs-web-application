@@ -2,6 +2,7 @@ import Loading from "@/app/components/Loading/Loading";
 import NewsListWrapper from "@/app/components/NewsListWrapper/news-list-wrapper";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
 
 // News listing with Suspense
 const NewsPage = () => {

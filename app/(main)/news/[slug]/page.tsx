@@ -2,18 +2,23 @@ import { NewsDetailPageProps } from "@/app/types";
 import Image from "next/image";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+
+const getApiUrl = () => {
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+};
 
 // Article detail page
 const NewsDetailPage = async ({ params }: NewsDetailPageProps) => {
     const { slug } = await params;
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news/${slug}`);
+    const res = await fetch(`${getApiUrl()}/news/${slug}`);
 
     const body = await res.json();
     if (!res.ok) {
         return <div className="text-center text-red-500 min-h-[200px] flex items-center justify-center">{body?.message || "News not found"}</div>;
     }
 
-    const { data: newsData, message } = body;
+    const { data: newsData } = body;
 
     return (
         <article className="news-article">
