@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getAllNews } from "@/lib/news";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://next-news.vercel.app";
+  const baseUrl = "https://next-news-nextjs-web-app.vercel.app";
 
   const newsArticles = getAllNews().map((article: { slug: string; date: string }) => ({
     url: `${baseUrl}/news/${article.slug}`,

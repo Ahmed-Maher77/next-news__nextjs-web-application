@@ -15,7 +15,7 @@ const merriweather = Merriweather({
   variable: "--font-merriweather",
 });
 
-const SITE_URL = "https://next-news.vercel.app";
+const SITE_URL = "https://next-news-nextjs-web-app.vercel.app";
 const SITE_NAME = "Next News";
 const SITE_DESCRIPTION =
   "Next News is a modern, server-rendered news application built with Next.js 16. It delivers the latest news in a concise, unbiased manner through a clean, accessible interface with article browsing, detailed views, image modals, and a date-filtered archive system.";

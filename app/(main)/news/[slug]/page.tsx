@@ -2,7 +2,6 @@ import { NewsDetailPageProps } from "@/app/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
 
 // Article detail page
 const NewsDetailPage = async ({ params }: NewsDetailPageProps) => {

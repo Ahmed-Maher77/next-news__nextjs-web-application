@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "News Archive | Next News",
     description:
       "Browse through our news archive to find past articles and updates. Filter by year and month.",
-    url: "https://next-news.vercel.app/archive",
+    url: "https://next-news-nextjs-web-app.vercel.app/archive",
   },
 }
 

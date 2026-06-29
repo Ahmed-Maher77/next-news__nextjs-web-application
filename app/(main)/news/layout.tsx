@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         title: "Latest News | Next News",
         description:
             "Browse all the latest news articles. Stay informed with concise, unbiased reporting.",
-        url: "https://next-news.vercel.app/news",
+        url: "https://next-news-nextjs-web-app.vercel.app/news",
     },
 };
 

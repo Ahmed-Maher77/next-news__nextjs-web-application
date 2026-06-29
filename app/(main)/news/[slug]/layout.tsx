@@ -1,7 +1,7 @@
 import { DUMMY_NEWS } from "@/app/assets/dummy-news";
 import { LayoutProps } from "@/app/types";
 
-const SITE_URL = "https://next-news.vercel.app";
+const SITE_URL = "https://next-news-nextjs-web-app.vercel.app";
 
 // Dynamic SEO metadata
 export const generateMetadata = async ({

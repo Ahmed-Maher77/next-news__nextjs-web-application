@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://next-news.vercel.app/sitemap.xml",
+    sitemap: "https://next-news-nextjs-web-app.vercel.app/sitemap.xml",
   };
 }
